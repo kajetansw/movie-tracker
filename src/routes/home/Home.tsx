@@ -1,11 +1,9 @@
-import "./App.scss";
+import "./Home.scss";
 
-function App() {
+export default function Home() {
   return (
     <>
       <div className="text">TODO</div>
     </>
   );
 }
-
-export default App;
