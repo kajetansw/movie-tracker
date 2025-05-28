@@ -27,7 +27,7 @@ export const MoviesList = () => {
   }
 
   if (movies.isFetching) {
-    return <LoadingState />;
+    return <LoadingState text="Loading movies..." />;
   }
 
   if (isEmpty(movies.data?.results)) {

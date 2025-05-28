@@ -23,7 +23,7 @@ export const DetailsPage = () => {
   } = useMovieDetails(movieId);
 
   if (isFetching) {
-    return <LoadingState />;
+    return <LoadingState text="Loading movie details..." />;
   }
 
   if (!details || !credits) {
