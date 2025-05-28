@@ -1,0 +1,15 @@
+@use "../../styles/variables.scss" as *;
+
+.movieVote__container {
+  display: flex;
+  align-items: center;
+
+  .vote {
+    margin-left: -10px;
+
+    .bold {
+      font-weight: $font-weight-bold;
+      font-size: 1.25rem;
+    }
+  }
+}

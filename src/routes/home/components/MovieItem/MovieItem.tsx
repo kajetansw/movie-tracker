@@ -1,8 +1,8 @@
 import type { Movie } from "@/models/movie";
-import { StarHalf } from "lucide-react";
 import { Link } from "react-router";
 import { MovieTitle } from "@/components/MovieTitle/MovieTitle";
 import { getYear } from "@/utils/getYear";
+import { MovieVote } from "@/components/MovieVote/MovieVote";
 
 import "./MovieItem.scss";
 
@@ -29,19 +29,7 @@ export const MovieItem = ({ movie }: Props) => {
         <div className="info">
           <MovieTitle title={movie.title} year={getYear(movie.release_date)} />
 
-          <div className="subtitle">
-            <StarHalf />
-            <p className="vote">
-              {movie.vote_average ? (
-                <>
-                  <span className="bold">{roundVote(movie.vote_average)}</span>
-                  {` / 10 (${movie.vote_count} votes)`}
-                </>
-              ) : (
-                "No votes"
-              )}
-            </p>
-          </div>
+          <MovieVote average={movie.vote_average} count={movie.vote_count} />
 
           <p className="overview">{trimOverview(movie.overview)}</p>
         </div>
@@ -53,8 +41,6 @@ export const MovieItem = ({ movie }: Props) => {
 /*
  * utils
  */
-
-const roundVote = (vote: number) => Math.round(+vote * 10) / 10;
 
 const trimOverview = (overview: string) => {
   const maxLength = 150;

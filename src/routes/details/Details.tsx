@@ -2,6 +2,7 @@ import { useGetMovieDetailsByMovieIdQuery } from "@/store/services/movies";
 import { useParams } from "react-router";
 import { MovieTitle } from "@/components/MovieTitle/MovieTitle";
 import { getYear } from "@/utils/getYear";
+import { MovieVote } from "@/components/MovieVote/MovieVote";
 
 import "./Details.scss";
 
@@ -42,6 +43,10 @@ export const DetailsPage = () => {
 
       <div className="info">
         <MovieTitle title={movie.title} year={getYear(movie.release_date)} />
+
+        <MovieVote average={movie.vote_average} count={movie.vote_count} />
+
+        <p className="director">{movie.overview}</p>
       </div>
     </section>
   );
