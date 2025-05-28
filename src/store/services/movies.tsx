@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { SearchResult } from "./types";
+import type { GetMoviesByQueryResult } from "./types";
 import invariant from "tiny-invariant";
 
 export const moviesApi = createApi({
@@ -20,7 +20,10 @@ export const moviesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getMoviesByQuery: builder.query<SearchResult, { query: string; includeAdult?: boolean; page: number }>({
+    getMoviesByQuery: builder.query<
+      GetMoviesByQueryResult,
+      { query: string; includeAdult?: boolean; page: number }
+    >({
       query: ({ query, includeAdult = false, page }) =>
         `search/movie?query=${query}&include_adult=${includeAdult}&language=en-US&page=${page}`,
     }),
