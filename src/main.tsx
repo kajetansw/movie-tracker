@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "@/routes/home/Home";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
-import { Layout } from "./routes/Layout";
+import { Layout } from "@/layout/Layout";
 
 import "./styles/globals.scss";
 
