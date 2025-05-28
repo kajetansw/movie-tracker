@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { filtersSelectors } from "@/store/features/filters/filtersSlice";
 import { EmptyState } from "../EmptyState/EmptyState";
 import { SearchX } from "lucide-react";
-import { LoadingState } from "../LoadingState/LoadingState";
+import { LoadingState } from "@/components/LoadingState/LoadingState";
 import { MovieItem } from "../MovieItem/MovieItem";
 
 import "./MoviesList.scss";

@@ -3,8 +3,10 @@ import { MovieTitle } from "@/components/MovieTitle/MovieTitle";
 import { getYear } from "@/utils/getYear";
 import { MovieVote } from "@/components/MovieVote/MovieVote";
 import { useMovieDetails } from "./hooks/useMovieDetails";
+import { LoadingState } from "@/components/LoadingState/LoadingState";
 
 import "./Details.scss";
+import { isEmpty } from "lodash";
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w400";
 
@@ -21,8 +23,7 @@ export const DetailsPage = () => {
   } = useMovieDetails(movieId);
 
   if (isFetching) {
-    // TOOD implement
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   if (!details || !credits) {
@@ -56,7 +57,9 @@ export const DetailsPage = () => {
           <p className="detail">{`Director: ${director.name}`}</p>
         )}
 
-        <p className="detail">{`Stars: ${stars.slice(0, 10).join(", ")}`}</p>
+        {!isEmpty(stars) && (
+          <p className="detail">{`Stars: ${stars.slice(0, 10).join(", ")}`}</p>
+        )}
 
         <p>{details.overview}</p>
       </div>
