@@ -5,6 +5,7 @@ import { filtersSelectors } from "@/store/features/filters/filtersSlice";
 import { EmptyState } from "../EmptyState/EmptyState";
 import { SearchX } from "lucide-react";
 import { LoadingState } from "../LoadingState/LoadingState";
+import { MovieItem } from "../MovieItem/MovieItem";
 
 import "./MoviesList.scss";
 
@@ -34,14 +35,14 @@ export const MoviesList = () => {
       <EmptyState
         text="No movies found. Try a different search query."
         icon={SearchX}
-      ></EmptyState>
+      />
     );
   }
 
   return (
-    <ul>
+    <ul className="moviesList__list">
       {movies.data?.results.map((movie) => (
-        <li key={movie.id}>{movie.title}</li>
+        <MovieItem key={movie.id} movie={movie} />
       ))}
     </ul>
   );

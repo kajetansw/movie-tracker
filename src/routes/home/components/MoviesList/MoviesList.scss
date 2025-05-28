@@ -1,1 +1,7 @@
 @use "../../../../styles/variables.scss" as *;
+
+.moviesList__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
