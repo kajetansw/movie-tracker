@@ -21,8 +21,7 @@ export const MoviesList = () => {
   );
 
   if (movies.isUninitialized) {
-    // TODO implement Idle state
-    return <div>Type your phrase</div>;
+    return null;
   }
 
   if (movies.isFetching) {
@@ -31,7 +30,6 @@ export const MoviesList = () => {
   }
 
   if (isEmpty(movies.data?.results)) {
-    // TODO implement No Results state
     return (
       <EmptyState
         text="No movies found. Try a different search query."
