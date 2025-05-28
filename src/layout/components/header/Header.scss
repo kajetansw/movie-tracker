@@ -8,6 +8,11 @@
   align-items: center;
   color: $color-purple;
 
+  a:-webkit-any-link,
+  a:active {
+    color: $color-purple;
+  }
+
   .title {
     display: inline-block;
     margin: 0;

@@ -1,4 +1,4 @@
-import type { Movie } from "@/models/movie";
+import type { Movie, MovieDetails } from "@/models/movie";
 
 export interface GetMoviesByQueryResult {
   page: number;
@@ -6,3 +6,5 @@ export interface GetMoviesByQueryResult {
   total_pages: number;
   total_results: number;
 }
+
+export type GetMovieDetailsByMovieIdResult = MovieDetails;

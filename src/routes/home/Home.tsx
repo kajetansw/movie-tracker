@@ -3,7 +3,7 @@ import { MoviesList } from "./components/MoviesList/MoviesList";
 
 import "./Home.scss";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="home__container">
       <SearchBar />

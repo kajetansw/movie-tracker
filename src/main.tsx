@@ -1,9 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "@/routes/home/Home";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
+import HomePage from "@/routes/home/Home";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { DetailsPage } from "./routes/details/Details";
 import { Layout } from "@/layout/Layout";
 
 import "./styles/globals.scss";
@@ -11,16 +12,30 @@ import "./styles/globals.scss";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Layout>
+        <HomePage />
+      </Layout>
+    ),
+  },
+  {
+    path: "/details/:movieId",
+    element: (
+      <Layout>
+        <DetailsPage />
+      </Layout>
+    ),
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Layout>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </Layout>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 );
