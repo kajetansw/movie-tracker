@@ -35,24 +35,6 @@
       flex-direction: column;
       gap: $spacing-4;
 
-      .title {
-        display: flex;
-        align-items: center;
-
-        .titleName {
-          margin: 0 $spacing-2 0 0;
-        }
-
-        .year {
-          display: inline-block;
-          background-color: $color-purple-light;
-          color: $color-white;
-          font-size: $font-size-sm;
-          padding: $spacing-1 $spacing-2;
-          border-radius: 0.25rem;
-        }
-      }
-
       .subtitle {
         display: flex;
         align-items: center;

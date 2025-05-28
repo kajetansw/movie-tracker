@@ -1,0 +1,24 @@
+@use "../../styles/variables.scss" as *;
+
+.details__container {
+  display: flex;
+  flex-direction: column;
+  margin: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+  }
+
+  .poster {
+    height: 200px;
+    object-fit: cover;
+
+    @media (min-width: $breakpoint-md) {
+      height: auto;
+    }
+  }
+
+  .info {
+    padding: $spacing-4;
+  }
+}

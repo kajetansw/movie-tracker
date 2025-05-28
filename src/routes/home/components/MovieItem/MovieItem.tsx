@@ -1,6 +1,8 @@
 import type { Movie } from "@/models/movie";
 import { StarHalf } from "lucide-react";
 import { Link } from "react-router";
+import { MovieTitle } from "@/components/MovieTitle/MovieTitle";
+import { getYear } from "@/utils/getYear";
 
 import "./MovieItem.scss";
 
@@ -25,12 +27,7 @@ export const MovieItem = ({ movie }: Props) => {
         />
 
         <div className="info">
-          <div className="title">
-            <h2 className="titleName">{movie.title}</h2>
-            {movie.release_date && (
-              <span className="year">{getYear(movie.release_date)}</span>
-            )}
-          </div>
+          <MovieTitle title={movie.title} year={getYear(movie.release_date)} />
 
           <div className="subtitle">
             <StarHalf />
@@ -56,8 +53,6 @@ export const MovieItem = ({ movie }: Props) => {
 /*
  * utils
  */
-
-const getYear = (releaseDate: string) => releaseDate.split("-")[0];
 
 const roundVote = (vote: number) => Math.round(+vote * 10) / 10;
 
