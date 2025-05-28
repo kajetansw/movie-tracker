@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { filtersSelectors } from "@/store/features/filters/filtersSlice";
 import { EmptyState } from "../EmptyState/EmptyState";
 import { SearchX } from "lucide-react";
+import { LoadingState } from "../LoadingState/LoadingState";
 
 import "./MoviesList.scss";
 
@@ -25,8 +26,7 @@ export const MoviesList = () => {
   }
 
   if (movies.isFetching) {
-    // TODO implement loading state
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
   if (isEmpty(movies.data?.results)) {
