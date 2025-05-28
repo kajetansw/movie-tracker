@@ -1,0 +1,38 @@
+@use "../../../../styles/variables.scss" as *;
+
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-4;
+  margin: $spacing-6 0 $spacing-10;
+
+  .pagesContainer {
+    display: flex;
+    gap: $spacing-2;
+  }
+
+  .button {
+    width: $spacing-8;
+    height: $spacing-8;
+    background-color: $color-white;
+    border: none;
+    border-radius: $border-radius-base;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-purple-light;
+      color: white;
+    }
+
+    &.active {
+      background-color: $color-purple;
+      color: $color-white;
+    }
+
+    &:disabled {
+      background-color: #eee;
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -6,15 +6,17 @@ import { EmptyState } from "../EmptyState/EmptyState";
 import { SearchX } from "lucide-react";
 import { LoadingState } from "@/components/LoadingState/LoadingState";
 import { MovieItem } from "../MovieItem/MovieItem";
+import { Pagination } from "../Pagination/Pagination";
 
 import "./MoviesList.scss";
 
 export const MoviesList = () => {
   const searchQuery = useSelector(filtersSelectors.selectQuery);
+  const searchPage = useSelector(filtersSelectors.selectPage);
 
   const movies = useGetMoviesByQueryQuery(
     {
-      page: 1,
+      page: searchPage,
       query: searchQuery,
     },
     {
@@ -40,10 +42,16 @@ export const MoviesList = () => {
   }
 
   return (
-    <ul className="moviesList__list">
-      {movies.data?.results.map((movie) => (
-        <MovieItem key={movie.id} movie={movie} />
-      ))}
-    </ul>
+    <>
+      <ul className="moviesList__list">
+        {movies.data?.results.map((movie) => (
+          <MovieItem key={movie.id} movie={movie} />
+        ))}
+      </ul>
+
+      {movies.data?.total_pages && (
+        <Pagination totalPages={movies.data.total_pages} />
+      )}
+    </>
   );
 };
