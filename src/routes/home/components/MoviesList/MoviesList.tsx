@@ -2,6 +2,8 @@ import { useGetMoviesByQueryQuery } from "@/store/services/movies";
 import { isEmpty } from "lodash";
 import { useSelector } from "react-redux";
 import { filtersSelectors } from "@/store/features/filters/filtersSlice";
+import { EmptyState } from "../EmptyState/EmptyState";
+import { SearchX } from "lucide-react";
 
 import "./MoviesList.scss";
 
@@ -30,7 +32,7 @@ export const MoviesList = () => {
 
   if (isEmpty(movies.data?.results)) {
     // TODO implement No Results state
-    return <div>No results!</div>;
+    return <EmptyState text="No results!" icon={SearchX}></EmptyState>;
   }
 
   return (

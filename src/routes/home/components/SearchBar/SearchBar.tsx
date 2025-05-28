@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { filtersActions, filtersSelectors } from "@/store/features/filters/filtersSlice";
+import {
+  filtersActions,
+  filtersSelectors,
+} from "@/store/features/filters/filtersSlice";
 import { useCallback, useEffect, useRef } from "react";
 import { debounce } from "lodash";
 
@@ -25,7 +28,7 @@ export const SearchBar = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="searchBar__container">
       <input
         className="searchInput"
         ref={inputRef}

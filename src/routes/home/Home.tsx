@@ -5,9 +5,12 @@ import "./Home.scss";
 
 export default function Home() {
   return (
-    <>
+    <main className="home__container">
       <SearchBar />
-      <MoviesList />
-    </>
+
+      <section>
+        <MoviesList />
+      </section>
+    </main>
   );
 }

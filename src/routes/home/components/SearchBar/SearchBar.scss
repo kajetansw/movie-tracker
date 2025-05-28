@@ -1,7 +1,7 @@
 @use "../../../../styles/variables.scss" as *;
 
-.container {
-  padding: $spacing-2 $spacing-6 $spacing-4;
+.searchBar__container {
+  padding: $spacing-2 0 $spacing-4;
 
   .searchInput {
     width: 100%;
