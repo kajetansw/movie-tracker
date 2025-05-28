@@ -1,0 +1,30 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { SearchResult } from "./types";
+import invariant from "tiny-invariant";
+
+export const moviesApi = createApi({
+  reducerPath: "moviesApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api.themoviedb.org/3/",
+    prepareHeaders: (headers) => {
+      const apiToken = import.meta.env.VITE_TMDB_ACCESS_TOKEN;
+
+      invariant(
+        apiToken,
+        "You should provide env variable for the TMDB access token. Check out .env.template file.",
+      );
+
+      headers.set("authorization", `Bearer ${apiToken}`);
+
+      return headers;
+    },
+  }),
+  endpoints: (builder) => ({
+    getMoviesByQuery: builder.query<SearchResult, { query: string; includeAdult?: boolean; page: number }>({
+      query: ({ query, includeAdult = false, page }) =>
+        `search/movie?query=${query}&include_adult=${includeAdult}&language=en-US&page=${page}`,
+    }),
+  }),
+});
+
+export const { useGetMoviesByQueryQuery } = moviesApi;
