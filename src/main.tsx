@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "@/routes/home/Home";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { Layout } from "./routes/Layout";
 
 import "./styles/globals.scss";
 
@@ -16,8 +17,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <Layout>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </Layout>
   </StrictMode>,
 );
