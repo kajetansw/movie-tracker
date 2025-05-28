@@ -23,5 +23,10 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-4;
+
+    .detail {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
   }
 }

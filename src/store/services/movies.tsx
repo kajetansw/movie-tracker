@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type {
+  GetMovieCreditsByMovieIdResult,
   GetMovieDetailsByMovieIdResult,
   GetMoviesByQueryResult,
 } from "./types";
@@ -36,8 +37,17 @@ export const moviesApi = createApi({
     >({
       query: (movieId) => `movie/${movieId}`,
     }),
+    getMovieCreditsByMovieId: builder.query<
+      GetMovieCreditsByMovieIdResult,
+      string
+    >({
+      query: (movieId) => `movie/${movieId}/credits`,
+    }),
   }),
 });
 
-export const { useGetMoviesByQueryQuery, useGetMovieDetailsByMovieIdQuery } =
-  moviesApi;
+export const {
+  useGetMoviesByQueryQuery,
+  useGetMovieDetailsByMovieIdQuery,
+  useGetMovieCreditsByMovieIdQuery,
+} = moviesApi;

@@ -1,8 +1,8 @@
-import { useGetMovieDetailsByMovieIdQuery } from "@/store/services/movies";
 import { useParams } from "react-router";
 import { MovieTitle } from "@/components/MovieTitle/MovieTitle";
 import { getYear } from "@/utils/getYear";
 import { MovieVote } from "@/components/MovieVote/MovieVote";
+import { useMovieDetails } from "./hooks/useMovieDetails";
 
 import "./Details.scss";
 
@@ -15,38 +15,50 @@ export const DetailsPage = () => {
     return null;
   }
 
-  const { data: movie, isFetching } = useGetMovieDetailsByMovieIdQuery(movieId);
+  const {
+    isFetching,
+    movie: { details, credits },
+  } = useMovieDetails(movieId);
 
   if (isFetching) {
     // TOOD implement
     return <div>Loading...</div>;
   }
 
-  if (!movie) {
+  if (!details || !credits) {
     return null;
   }
 
-  // TODO remove
-  console.log(movie);
+  const director = credits.crew.find((c) => c.job === "Director");
+  const stars = credits.cast.map((c) => c.name);
 
   return (
     <section className="details__container">
       <img
         className="poster"
         src={
-          movie.poster_path
-            ? `${POSTER_URL}/${movie.poster_path}`
+          details.poster_path
+            ? `${POSTER_URL}/${details.poster_path}`
             : "https://placehold.co/400x600?text=No+poster"
         }
         alt=""
       />
 
       <div className="info">
-        <MovieTitle title={movie.title} year={getYear(movie.release_date)} />
+        <MovieTitle
+          title={details.title}
+          year={getYear(details.release_date)}
+        />
 
-        <MovieVote average={movie.vote_average} count={movie.vote_count} />
+        <MovieVote average={details.vote_average} count={details.vote_count} />
 
-        <p className="director">{movie.overview}</p>
+        {director?.name && (
+          <p className="detail">{`Director: ${director.name}`}</p>
+        )}
+
+        <p className="detail">{`Stars: ${stars.slice(0, 10).join(", ")}`}</p>
+
+        <p>{details.overview}</p>
       </div>
     </section>
   );
