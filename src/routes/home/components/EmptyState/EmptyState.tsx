@@ -13,7 +13,7 @@ export const EmptyState: React.FC<Props> = ({ icon, text }) => {
 
   return (
     <div className="emptyState__container">
-      <div className="icon">{<Icon />}</div>
+      <div className="icon">{<Icon size={40} />}</div>
       <p className="text">{text}</p>
     </div>
   );

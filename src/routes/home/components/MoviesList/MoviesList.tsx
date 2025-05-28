@@ -32,7 +32,12 @@ export const MoviesList = () => {
 
   if (isEmpty(movies.data?.results)) {
     // TODO implement No Results state
-    return <EmptyState text="No results!" icon={SearchX}></EmptyState>;
+    return (
+      <EmptyState
+        text="No movies found. Try a different search query."
+        icon={SearchX}
+      ></EmptyState>
+    );
   }
 
   return (
