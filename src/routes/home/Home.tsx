@@ -1,4 +1,6 @@
 import { useGetMoviesByQueryQuery } from "@/store/services/movies";
+import { SearchBar } from "./components/SearchBar/SearchBar";
+
 import "./Home.scss";
 
 export default function Home() {
@@ -11,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="text">TODO</div>
+      <SearchBar></SearchBar>
     </>
   );
 }
