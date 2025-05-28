@@ -1,72 +1,75 @@
 @use "../../../../styles/variables.scss" as *;
 
 .movieItem__container {
-  list-style-type: none;
-  border-radius: $border-radius-base;
-  background-color: $color-white;
-  display: flex;
-  flex-direction: column;
-  color: initial;
-
-  @media (min-width: $breakpoint-md) {
-    flex-direction: row;
-  }
-
-  .poster {
+  .listItem {
+    list-style-type: none;
     border-radius: $border-radius-base;
-    height: 200px;
-    object-fit: cover;
-
-    @media (min-width: $breakpoint-md) {
-      border-top-left-radius: $border-radius-base;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: $border-radius-base;
-      border-bottom-right-radius: 0;
-      height: auto;
-    }
-  }
-
-  .info {
-    width: 100%;
-    padding: $spacing-4;
+    background-color: $color-white;
     display: flex;
     flex-direction: column;
-    gap: $spacing-4;
+    color: initial;
+    text-decoration: none;
 
-    .title {
-      display: flex;
-      align-items: center;
+    @media (min-width: $breakpoint-md) {
+      flex-direction: row;
+    }
 
-      .titleName {
-        margin: 0 $spacing-2 0 0;
-      }
+    .poster {
+      border-radius: $border-radius-base;
+      height: 200px;
+      object-fit: cover;
 
-      .year {
-        display: inline-block;
-        background-color: $color-purple-light;
-        color: $color-white;
-        font-size: $font-size-sm;
-        padding: $spacing-1 $spacing-2;
-        border-radius: 0.25rem;
+      @media (min-width: $breakpoint-md) {
+        border-top-left-radius: $border-radius-base;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: $border-radius-base;
+        border-bottom-right-radius: 0;
+        height: auto;
       }
     }
 
-    .subtitle {
+    .info {
+      width: 100%;
+      padding: $spacing-4;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: $spacing-4;
 
-      .vote {
-        margin-left: -10px;
+      .title {
+        display: flex;
+        align-items: center;
 
-        .bold {
-          font-weight: $font-weight-bold;
-          font-size: 1.25rem;
+        .titleName {
+          margin: 0 $spacing-2 0 0;
+        }
+
+        .year {
+          display: inline-block;
+          background-color: $color-purple-light;
+          color: $color-white;
+          font-size: $font-size-sm;
+          padding: $spacing-1 $spacing-2;
+          border-radius: 0.25rem;
         }
       }
-    }
 
-    .overview {
-      margin-top: $spacing-3;
+      .subtitle {
+        display: flex;
+        align-items: center;
+
+        .vote {
+          margin-left: -10px;
+
+          .bold {
+            font-weight: $font-weight-bold;
+            font-size: 1.25rem;
+          }
+        }
+      }
+
+      .overview {
+        margin-top: $spacing-3;
+      }
     }
   }
 }

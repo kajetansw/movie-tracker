@@ -12,8 +12,8 @@ const POSTER_URL = "https://image.tmdb.org/t/p/w200";
 
 export const MovieItem = ({ movie }: Props) => {
   return (
-    <Link to={`/details/${movie.id}`}>
-      <li className="movieItem__container" key={movie.id}>
+    <li className="movieItem__container" key={movie.id}>
+      <Link className="listItem" to={`/details/${movie.id}`}>
         <img
           className="poster"
           src={
@@ -48,8 +48,8 @@ export const MovieItem = ({ movie }: Props) => {
 
           <p className="overview">{trimOverview(movie.overview)}</p>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 };
 
