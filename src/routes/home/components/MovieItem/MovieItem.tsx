@@ -1,6 +1,7 @@
 import type { Movie } from "@/models/movie";
 
 import "./MovieItem.scss";
+import { Star, StarHalf } from "lucide-react";
 
 interface Props {
   movie: Movie;
@@ -9,6 +10,8 @@ interface Props {
 const POSTER_URL = "https://image.tmdb.org/t/p/w200";
 
 export const MovieItem = ({ movie }: Props) => {
+  console.log(movie);
+
   return (
     <li className="movieItem__container" key={movie.id}>
       <img
@@ -28,6 +31,22 @@ export const MovieItem = ({ movie }: Props) => {
             <span className="year">{getYear(movie.release_date)}</span>
           )}
         </div>
+
+        <div className="subtitle">
+          <StarHalf />
+          <p className="vote">
+            {movie.vote_average ? (
+              <>
+                <span className="bold">{roundVote(movie.vote_average)}</span>
+                {` / 10 (${movie.vote_count} votes)`}
+              </>
+            ) : (
+              "No votes"
+            )}
+          </p>
+        </div>
+
+        <p className="overview">{trimOverview(movie.overview)}</p>
       </div>
     </li>
   );
@@ -38,3 +57,7 @@ export const MovieItem = ({ movie }: Props) => {
  */
 
 const getYear = (releaseDate: string) => releaseDate.split("-")[0];
+
+const roundVote = (vote: number) => Math.round(+vote * 10) / 10;
+
+const trimOverview = (overview: string) => overview.substring(0, 150) + "...";

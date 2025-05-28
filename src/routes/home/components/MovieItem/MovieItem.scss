@@ -5,22 +5,39 @@
   border-radius: $border-radius-base;
   background-color: $color-white;
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+  }
 
   .poster {
-    border-top-left-radius: $border-radius-base;
-    border-bottom-left-radius: $border-radius-base;
+    border-radius: $border-radius-base;
+    height: 200px;
+    object-fit: cover;
+
+    @media (min-width: $breakpoint-md) {
+      border-top-left-radius: $border-radius-base;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: $border-radius-base;
+      border-bottom-right-radius: 0;
+      height: auto;
+    }
   }
 
   .info {
     width: 100%;
     padding: $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
 
     .title {
       display: flex;
       align-items: center;
 
       .titleName {
-        margin: 0 $spacing-2 0;
+        margin: 0 $spacing-2 0 0;
       }
 
       .year {
@@ -31,6 +48,24 @@
         padding: $spacing-1 $spacing-2;
         border-radius: 0.25rem;
       }
+    }
+
+    .subtitle {
+      display: flex;
+      align-items: center;
+
+      .vote {
+        margin-left: -10px;
+
+        .bold {
+          font-weight: $font-weight-bold;
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .overview {
+      margin-top: $spacing-3;
     }
   }
 }
