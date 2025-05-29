@@ -13,7 +13,16 @@ import {
 import "./MovieItem.scss";
 
 interface Props {
-  movie: Movie;
+  movie: Pick<
+    Movie,
+    | "poster_path"
+    | "id"
+    | "title"
+    | "release_date"
+    | "vote_average"
+    | "vote_count"
+    | "overview"
+  >;
 }
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w200";

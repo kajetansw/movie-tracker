@@ -1,26 +1,56 @@
-import { MovieItem } from "../MovieItem/MovieItem";
+import { useGetMoviesByQueryQuery } from "@/store/services/movies";
+import { isEmpty } from "lodash";
+import { useSelector } from "react-redux";
+import { filtersSelectors } from "@/store/features/filters/filtersSlice";
+import { EmptyState } from "../../../../components/EmptyState/EmptyState";
+import { SearchX } from "lucide-react";
+import { LoadingState } from "@/components/LoadingState/LoadingState";
+import { MovieItem } from "../../../../components/MovieItem/MovieItem";
 import { Pagination } from "../Pagination/Pagination";
-import type { Movie } from "@/models/movie";
-import { isEmpty, isNil } from "lodash";
 
 import "./MoviesList.scss";
 
-interface Props {
-  movies: Movie[];
-  totalPages?: number;
-}
+export const MoviesList = () => {
+  const searchQuery = useSelector(filtersSelectors.selectQuery);
+  const searchPage = useSelector(filtersSelectors.selectPage);
 
-export const MoviesList = ({ movies, totalPages }: Props) => {
+  const movies = useGetMoviesByQueryQuery(
+    {
+      page: searchPage,
+      query: searchQuery,
+    },
+    {
+      skip: !searchQuery,
+    },
+  );
+
+  if (movies.isUninitialized) {
+    return null;
+  }
+
+  if (movies.isFetching) {
+    return <LoadingState text="Loading movies..." />;
+  }
+
+  if (isEmpty(movies.data?.results)) {
+    return (
+      <EmptyState
+        text="No movies found. Try a different search query."
+        icon={SearchX}
+      />
+    );
+  }
+
   return (
     <>
       <ul className="moviesList__list">
-        {movies.map((movie) => (
+        {movies.data?.results.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </ul>
 
-      {!isNil(totalPages) && !isEmpty(movies) && (
-        <Pagination totalPages={totalPages} />
+      {movies.data?.total_pages && (
+        <Pagination totalPages={movies.data.total_pages} />
       )}
     </>
   );

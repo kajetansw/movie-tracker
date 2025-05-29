@@ -16,7 +16,7 @@ export const Header = () => {
       <ul>
         <li className="navItem">
           <Link className="navLink" to="/favorites">
-            <Star size={20} />
+            <Star size={20} fill="#8a6bc1" />
             <span>Favorites</span>
           </Link>
         </li>
