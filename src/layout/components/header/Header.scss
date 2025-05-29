@@ -3,18 +3,37 @@
 .header {
   padding: $spacing-4 $spacing-4;
   display: flex;
-  flex-direction: row;
-  gap: $spacing-2;
+  justify-content: space-between;
   align-items: center;
-  color: $color-purple;
 
-  a:-webkit-any-link,
-  a:active {
+  .logo {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-2;
+    align-items: center;
     color: $color-purple;
+
+    a:-webkit-any-link,
+    a:active {
+      color: $color-purple;
+    }
+
+    .title {
+      display: inline-block;
+      margin: 0;
+    }
   }
 
-  .title {
-    display: inline-block;
-    margin: 0;
+  .navItem {
+    list-style-type: none;
+
+    .navLink {
+      color: $color-purple-dark;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      gap: $spacing-1;
+    }
   }
 }

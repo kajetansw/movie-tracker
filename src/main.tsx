@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { DetailsPage } from "./routes/details/Details";
 import { Layout } from "@/layout/Layout";
+import { FavoritesPage } from "./routes/favorites/FavoritesPage";
 
 import "./styles/globals.scss";
 
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <DetailsPage />
+      </Layout>
+    ),
+  },
+  {
+    path: "/favorites",
+    element: (
+      <Layout>
+        <FavoritesPage />
       </Layout>
     ),
   },
