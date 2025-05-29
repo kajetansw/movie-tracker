@@ -36,6 +36,17 @@
       flex-direction: column;
       gap: $spacing-4;
 
+      .infoHeader {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .favoriteButton {
+        border: none;
+        background-color: inherit;
+        color: $color-purple;
+      }
+
       .overview {
         margin-top: $spacing-3;
       }
