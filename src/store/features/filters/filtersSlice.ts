@@ -17,6 +17,7 @@ export const filtersSlice = createSlice({
   reducers: {
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
+      state.page = initialState.page;
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
