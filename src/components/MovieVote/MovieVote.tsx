@@ -1,10 +1,9 @@
 import { StarHalf } from "lucide-react";
-import { roundVote } from "@/utils/roundVote";
 
 import "./MovieVote.scss";
 
 interface Props {
-  average: number | null;
+  average: number;
   count: number;
 }
 
@@ -25,3 +24,9 @@ export const MovieVote = ({ average, count }: Props) => {
     </div>
   );
 };
+
+/*
+ * utils
+ */
+
+const roundVote = (vote: number) => Math.round(+vote * 10) / 10;
