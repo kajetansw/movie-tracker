@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MovieTitle } from "../MovieTitle/MovieTitle";
 import { SELECTORS } from "@/constants/testSelectors";
+import { queryByTestIdStartingWith } from "@/test/helpers";
 
 describe("MovieTitle", () => {
   it("renders title correctly", () => {
@@ -18,9 +19,10 @@ describe("MovieTitle", () => {
     const title = "Test Movie";
     const year = "";
 
-    render(<MovieTitle title={title} year={year} />);
+    const { container } = render(<MovieTitle title={title} year={year} />);
+
     expect(
-      screen.queryByTestId(`${SELECTORS.movieTitle.year}-${title}-${year}`),
+      queryByTestIdStartingWith(container, SELECTORS.movieTitle.year),
     ).not.toBeInTheDocument();
   });
 });
