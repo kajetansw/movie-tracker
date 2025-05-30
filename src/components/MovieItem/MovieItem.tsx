@@ -9,6 +9,7 @@ import {
   favoritesActions,
   favoritesSelectors,
 } from "@/store/features/favorites/favoritesSlice";
+import { SELECTORS } from "@/constants/testSelectors";
 
 import "./MovieItem.scss";
 
@@ -43,7 +44,8 @@ export const MovieItem = ({ movie }: Props) => {
               ? `${POSTER_URL}/${movie.poster_path}`
               : "https://placehold.co/200x300?text=No+poster"
           }
-          alt=""
+          alt={`Poster for ${movie.title}`}
+          data-test={`${SELECTORS.movieItem.poster}-${movie.id}`}
         />
 
         <div className="info">
@@ -59,6 +61,7 @@ export const MovieItem = ({ movie }: Props) => {
                 e.preventDefault();
                 dispatch(favoritesActions.toggle(movie.id));
               }}
+              data-test={`${SELECTORS.movieItem.favoriteBtn}-${isFavorite ? "on" : "off"}-${movie.id}`}
             >
               <Star {...(isFavorite ? { fill: "#8a6bc1" } : {})} />
             </button>
