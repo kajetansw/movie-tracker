@@ -1,1 +1,5 @@
-export const getYear = (releaseDate: string) => releaseDate.split("-")[0];
+export const getYear = (releaseDate: string) => {
+  const year = new Date(releaseDate).getFullYear();
+
+  return !isNaN(year) ? `${year}` : "";
+};
