@@ -4,9 +4,9 @@ import { getYear } from "@/utils/getYear";
 import { MovieVote } from "@/components/MovieVote/MovieVote";
 import { useMovieDetails } from "./hooks/useMovieDetails";
 import { LoadingState } from "@/components/LoadingState/LoadingState";
+import { isEmpty } from "lodash";
 
 import "./Details.scss";
-import { isEmpty } from "lodash";
 
 const POSTER_URL = "https://image.tmdb.org/t/p/w400";
 
@@ -58,7 +58,7 @@ export const DetailsPage = () => {
         )}
 
         {!isEmpty(stars) && (
-          <p className="detail">{`Stars: ${stars.slice(0, 10).join(", ")}`}</p>
+          <p className="detail">{`Stars: ${getTopStars(stars)}`}</p>
         )}
 
         <p>{details.overview}</p>
@@ -66,3 +66,9 @@ export const DetailsPage = () => {
     </section>
   );
 };
+
+/*
+ * utils
+ */
+
+const getTopStars = (stars: string[]) => stars.slice(0, 10).join(", ");
