@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 # Env
-.env
+# .env
 
 # Tests
 coverage
