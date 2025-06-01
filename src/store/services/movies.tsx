@@ -5,6 +5,7 @@ import type {
   GetMoviesByQueryResult,
 } from "./types";
 import invariant from "tiny-invariant";
+import { useQueries } from "../useQueries";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -51,3 +52,10 @@ export const {
   useGetMovieDetailsByMovieIdQuery,
   useGetMovieCreditsByMovieIdQuery,
 } = moviesApi;
+
+export const useMoviesDetailsByMoviesIdsQueries = useQueries(
+  moviesApi.endpoints.getMovieDetailsByMovieId,
+  {
+    serializeArgs: (args) => args.join(","),
+  },
+);

@@ -13,5 +13,6 @@ export const useMovieDetails = (movieId: string) => {
       details: details.data,
       credits: credits.data,
     },
+    isError: details.isError || credits.isError,
   };
 };

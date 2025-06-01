@@ -5,6 +5,8 @@ import { MovieVote } from "@/components/MovieVote/MovieVote";
 import { useMovieDetails } from "./hooks/useMovieDetails";
 import { LoadingState } from "@/components/LoadingState/LoadingState";
 import { isEmpty } from "lodash";
+import { EmptyState } from "@/components/EmptyState/EmptyState";
+import { CircleX } from "lucide-react";
 
 import "./Details.scss";
 
@@ -27,7 +29,12 @@ export const DetailsPage = () => {
   }
 
   if (!details || !credits) {
-    return null;
+    return (
+      <EmptyState
+        text="Error while loading movie details. Please try again later."
+        icon={CircleX}
+      />
+    );
   }
 
   const director = credits.crew.find((c) => c.job === "Director");

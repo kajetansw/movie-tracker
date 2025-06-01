@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import { useSelector } from "react-redux";
 import { filtersSelectors } from "@/store/features/filters/filtersSlice";
 import { EmptyState } from "../../../../components/EmptyState/EmptyState";
-import { SearchX } from "lucide-react";
+import { CircleX, SearchX } from "lucide-react";
 import { LoadingState } from "@/components/LoadingState/LoadingState";
 import { MovieItem } from "../../../../components/MovieItem/MovieItem";
 import { Pagination } from "../Pagination/Pagination";
@@ -30,6 +30,15 @@ export const MoviesList = () => {
 
   if (movies.isFetching) {
     return <LoadingState text="Loading movies..." />;
+  }
+
+  if (movies.isError) {
+    return (
+      <EmptyState
+        text="Error while fetching movies. Please try again later."
+        icon={CircleX}
+      />
+    );
   }
 
   if (isEmpty(movies.data?.results)) {
