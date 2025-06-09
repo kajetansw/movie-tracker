@@ -1,26 +1,16 @@
-import { useMoviesDetailsByMoviesIdsQueries } from "@/store/services/movies";
+import { useGetFavoriteMoviesQuery } from "@/store/services/movies";
 import { MovieItem } from "@/components/MovieItem/MovieItem";
-import { useSelector } from "react-redux";
-import { favoritesSelectors } from "@/store/features/favorites/favoritesSlice";
 import { isEmpty } from "lodash";
 import { EmptyState } from "@/components/EmptyState/EmptyState";
 import { CircleX, Star } from "lucide-react";
-import { QueryStatus } from "@reduxjs/toolkit/query";
+import { LoadingState } from "@/components/LoadingState/LoadingState";
 
 import "./FavoritesPage.scss";
 
 export const FavoritesPage = () => {
-  const favoritesIds = useSelector(favoritesSelectors.ids);
+  const favoriteMovies = useGetFavoriteMoviesQuery();
 
-  const movies = useMoviesDetailsByMoviesIdsQueries(
-    favoritesIds.map((id) => String(id)),
-  );
-
-  if (isEmpty(favoritesIds)) {
-    return <EmptyState text="No favorites added" icon={Star} />;
-  }
-
-  if (movies.some((m) => m.isError)) {
+  if (favoriteMovies.isError) {
     return (
       <EmptyState
         text="Error while fetching favorite movies. Please try again later."
@@ -29,28 +19,19 @@ export const FavoritesPage = () => {
     );
   }
 
-  if (movies.some((m) => isFetching(m.status))) {
-    return (
-      <ul className="favortesPage__list">
-        {favoritesIds.map((id) => (
-          <FavoriteItemSkeleton key={id} />
-        ))}
-      </ul>
-    );
+  if (favoriteMovies.isFetching) {
+    return <LoadingState text="Loading favorites..." />;
+  }
+
+  if (isEmpty(favoriteMovies.data?.results)) {
+    return <EmptyState text="No favorites added" icon={Star} />;
   }
 
   return (
     <ul className="favortesPage__list">
-      {movies.map((movie) => (
-        <MovieItem movie={movie.data!} key={movie.data!.id} />
+      {favoriteMovies.data?.results.map((movie) => (
+        <MovieItem movie={movie} key={movie.id} />
       ))}
     </ul>
   );
 };
-
-const FavoriteItemSkeleton = () => {
-  return <li className="favoriteItemSkeleton"></li>;
-};
-
-const isFetching = (status: QueryStatus) =>
-  [QueryStatus.uninitialized, QueryStatus.pending].includes(status);

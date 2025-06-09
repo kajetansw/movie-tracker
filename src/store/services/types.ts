@@ -10,3 +10,8 @@ export interface GetMoviesByQueryResult {
 export type GetMovieDetailsByMovieIdResult = MovieDetails;
 
 export type GetMovieCreditsByMovieIdResult = MovieCredits;
+
+export type AddMovieToFavoritesResult = {
+  status_code: number;
+  status_message: string;
+};

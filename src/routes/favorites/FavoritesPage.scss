@@ -6,11 +6,3 @@
   gap: $spacing-4;
   margin: $spacing-4 $spacing-4 $spacing-6;
 }
-
-.favoriteItemSkeleton {
-  list-style-type: none;
-  height: 300px;
-  width: 100%;
-  background-color: $color-white;
-  border-radius: $border-radius-base;
-}
